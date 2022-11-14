@@ -1,5 +1,7 @@
+import { CHROME_EXECUTABLE_PATH } from '$env/static/private';
 import { json } from '@sveltejs/kit';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
+import chromium from 'chrome-aws-lambda';
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
@@ -60,18 +62,14 @@ export async function run(name) {
 
   const BASE_URL = 'https://www.vivino.com';
   const SEARCH_PATH = '/search/wines?q=';
-  const STATUS_FULL = 'FULL_DATA';
-  const STATUS_ERROR_RESPONSE = 'RESPONSE_ERROR';
-  const STATUS_ERROR_EXCEPTION = 'SOME_EXCEPTION';
   const PAUSE_MULTIPLIER = 15;
 
   const result = { vinos: [] };
 
   const browser = await puppeteer.launch({
-    headless: true,
-    defaultViewport: { width: 1920, height: 1040 },
-    devtools: false,
-    args: ['--start-maximized']
+    args: chromium.args,
+    executablePath: CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
+    headless: true
   });
 
   const page = await browser.newPage();
@@ -121,7 +119,7 @@ export async function run(name) {
           isNext = true;
         } else {
           // no more data
-          result.status = STATUS_FULL;
+          result.status = 'FULL_DATA';
         }
       } else if (response.status() === 429) {
         pause++;
@@ -129,21 +127,19 @@ export async function run(name) {
         console.log(`Waited for ${pause * PAUSE_MULTIPLIER} seconds on the page ${index}`);
         isNext = true;
       } else {
-        // return some error info
-        result.http_status = response.status(); // http status
-        result.page_index = index; // index of the problem page
-        result.status = STATUS_ERROR_RESPONSE;
+        result.http_status = response.status();
+        result.page_index = index;
+        result.status = 'RESPONSE_ERROR';
       }
     } while (isNext && pageIndex < maxPages);
   } catch (error) {
-    result.status = STATUS_ERROR_EXCEPTION;
+    result.status = 'SOME_EXCEPTION';
     result.message = error;
     console.log('Exception:', error);
   } finally {
     console.log('Finish!');
     await browser.close();
     if (!result.vinos || result.vinos.length < 1) {
-      // create empty wine
       result.vinos.push({
         name: 'No results were found',
         thumb: 'wine-bottle.svg'

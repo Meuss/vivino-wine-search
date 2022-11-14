@@ -27,8 +27,12 @@
 </script>
 
 <form on:submit|preventDefault={onSubmit} class="grid grid-cols-12 gap-8">
-  <h1 class="col-start-4 col-span-3 text-center text-vivino text-xl -ml-4">Scraping Vivino with puppeteer</h1>
-  <div class="col-start-4 col-span-3">
+  <h1
+    class="col-start-1 col-span-3 lg:col-start-1 lg:col-span-12 text-center lg:text-left lg:ml-0 text-vivino text-xl -ml-4"
+  >
+    Scraping Vivino with puppeteer
+  </h1>
+  <div class="col-start-1 col-span-3 lg:col-start-1 lg:col-span-6">
     <label for="searchTerm" class="block text-md font-medium text-gray-400">Search for a wine</label>
     <div class="relative mt-1 rounded-md shadow-sm">
       <input
@@ -41,7 +45,7 @@
     </div>
   </div>
 
-  <div class="col-start-7 col-span-4 flex items-end">
+  <div class="col-start-4 col-span-4 lg:col-start-7 flex items-end">
     <button
       type="submit"
       class="relative rounded-md border border-transparent bg-vivino py-2 pl-12 pr-4 text-sm font-medium text-white hover:bg-vivinodark"

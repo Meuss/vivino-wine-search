@@ -11,7 +11,7 @@
   }
 </script>
 
-<div class="grid grid-cols-4 gap-16 my-16">
+<div class="grid grid-cols-4 gap-16 my-16 lg:grid-cols-3 lg:gap-12 xs:grid-cols-2 xs:gap-8 xxs:grid-cols-1 xxs:gap-4">
   {#each res.vinos as item}
     <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white text-darkblue p-8">
       <div class="aspect-square bg-contain bg-no-repeat bg-center" style="background-image: url({item.thumb});" />

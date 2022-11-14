@@ -10,8 +10,8 @@ module.exports = {
       screens: {
         lg: { max: '1400px' },
         md: { max: '1023px' },
-        sm: { max: '767px' },
-        xs: { max: '480px' }
+        xs: { max: '767px' },
+        xxs: { max: '480px' }
       },
       fontFamily: {
         sans: ['Avenir', 'sans-serif']
