@@ -18,7 +18,6 @@
     });
 
     res = await response.json();
-    console.log(res);
     loading = false;
   }
 </script>

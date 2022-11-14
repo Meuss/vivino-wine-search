@@ -6,7 +6,6 @@ import chromium from 'chrome-aws-lambda';
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
   const { searchTerm } = await request.json();
-  console.log(searchTerm);
   const res = await run(`${searchTerm}`);
   return json(res);
 }
