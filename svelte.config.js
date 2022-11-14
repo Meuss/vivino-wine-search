@@ -6,9 +6,8 @@ import nesting from 'postcss-nesting';
 const config = {
   kit: {
     adapter: adapter({
-      // if true, will create a Netlify Edge Function rather
-      // than using standard Node-based functions
-      edge: false
+      edge: false,
+      split: true
     })
   },
   preprocess: [
