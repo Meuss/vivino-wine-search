@@ -1,4 +1,3 @@
-import { CHROME_EXECUTABLE_PATH } from '$env/static/private';
 import { json } from '@sveltejs/kit';
 import puppeteer from 'puppeteer-core';
 import chromium from 'chrome-aws-lambda';
@@ -67,7 +66,9 @@ export async function run(name) {
 
   const browser = await puppeteer.launch({
     args: chromium.args,
-    executablePath: CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
+    executablePath: import.meta.env.DEV
+      ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+      : await chromium.executablePath,
     headless: true
   });
 
