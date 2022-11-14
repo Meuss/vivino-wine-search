@@ -28,9 +28,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"fs-extra": "^10.1.0",
-		"minimist": "^1.2.7",
-		"puppeteer": "^19.2.2",
-		"swiper": "^8.4.4"
+		"puppeteer": "^19.2.2"
 	}
 }
