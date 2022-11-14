@@ -142,7 +142,7 @@ export async function run(name) {
   } finally {
     console.log('Finish!');
     await browser.close();
-    if (!result.vinos.length) {
+    if (!result.vinos || result.vinos.length < 1) {
       // create empty wine
       result.vinos.push({
         name: 'No results were found',
