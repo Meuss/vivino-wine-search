@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default styles for plain HTML elements */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+}
+/* Classes that you’d still like to be able to override with utility classes (card, btn, etc.) */
+@layer components {
+}
+
+/* CSS features that Tailwind doesn’t include utilities for out of the box */
+@layer utilities {
+  /* overriding tailwind container for desktop first */
+  .container {
+    @apply mx-auto;
+    max-width: 1400px;
+  }
+  @screen lg {
+    .container {
+      max-width: 1280px;
+    }
+  }
+  @screen md {
+    .container {
+      max-width: 900px;
+    }
+  }
+  @screen xs {
+    .container {
+      max-width: 100%;
+    }
+  }
+}
