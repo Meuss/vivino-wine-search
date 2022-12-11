@@ -1,28 +1,25 @@
-# create-svelte
+# Vivino wine search
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+> built with [SvelteKit](https://kit.svelte.dev/)
 
-## Creating a project
+A small POC for scraping wine data from [Vivino](https://www.vivino.com/). For the moment only available for local dev.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Tools
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- [SvelteKit](https://kit.svelte.dev/) for the frontend
+- [Puppeteer](https://pptr.dev/) for scraping
+- [WineInfo Python API](https://github.com/paulbmiller/wine_info) for scraping (thanks Paul!)
+- [Vite](https://vitejs.dev/) for bundling
+- [TailwindCSS](https://tailwindcss.com/) for styling
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```bash
+# install dependencies
+npm i
+# develop locally
 npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
