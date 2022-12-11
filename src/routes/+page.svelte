@@ -26,7 +26,7 @@
       const details = 0;
       const lang = 'fr-CH,fr';
       const response = await fetch(
-        `http://127.0.0.1:80/wine_info?q=${searchTerm}&details=${searchTerm}&accept_language=${lang};`,
+        `http://127.0.0.1:80/wine_info?q=${searchTerm}&details=${details}&accept_language=${lang}`,
         {
           method: 'POST'
         }

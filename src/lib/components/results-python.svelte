@@ -19,7 +19,7 @@
         <div class="py-4">
           <div class="font-bold text-xl">{truncate(item.search_results_name, maxChars)}</div>
         </div>
-        {#if item.region && item.country}
+        {#if item.region_name && item.country_name}
           <div class="font-light text-md mb-2">{item.region_name} - {item.country_name}</div>
         {/if}
         <div class="flex items-center -ml-1">
