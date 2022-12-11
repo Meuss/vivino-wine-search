@@ -1,28 +1,48 @@
 <script>
   import Form from '../lib/components/form.svelte';
-  import Results from '../lib/components/results.svelte';
+  import Switch from '../lib/components/switch.svelte';
+  import ResultsPuppeteer from '../lib/components/results-puppeteer.svelte';
+  import ResultsPython from '../lib/components/results-python.svelte';
   // import ResultsBackup from '../lib/components/results-backup.svelte';
 
   let searchTerm;
   let res = null;
   let loading = false;
+  let switchValue;
   async function handleSubmit(e) {
     loading = true;
     searchTerm = e.detail;
-    const response = await fetch('/', {
-      method: 'POST',
-      body: JSON.stringify({ searchTerm }),
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
-
-    res = await response.json();
+    if (switchValue === 'Puppeteer') {
+      const response = await fetch('/', {
+        method: 'POST',
+        body: JSON.stringify({ searchTerm }),
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
+      res = await response.json();
+      console.log(res);
+    } else {
+      const details = 0;
+      const lang = 'fr-CH,fr';
+      const response = await fetch(
+        `http://127.0.0.1:80/wine_info?q=${searchTerm}&details=${searchTerm}&accept_language=${lang};`,
+        {
+          method: 'POST'
+        }
+      );
+      res = await response.json();
+      console.log(res);
+    }
     loading = false;
   }
 </script>
 
 <div class="container">
+  <h1 class="text-left lg:ml-0 text-vivino text-xl mb-4">Scraping Vivino</h1>
+
+  <Switch bind:value={switchValue} options={['Puppeteer', 'Python Api']} />
+
   <Form on:submit={handleSubmit} />
   <!-- <ResultsBackup /> -->
   {#if loading}
@@ -47,6 +67,10 @@
       <p class="ml-4">Getting data from Vivino...</p>
     </div>
   {:else if res}
-    <Results bind:res />
+    {#if switchValue === 'Puppeteer'}
+      <ResultsPuppeteer bind:res />
+    {:else}
+      <ResultsPython bind:res />
+    {/if}
   {/if}
 </div>

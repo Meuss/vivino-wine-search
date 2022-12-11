@@ -27,13 +27,8 @@
 </script>
 
 <form on:submit|preventDefault={onSubmit} class="grid grid-cols-12 gap-8">
-  <h1
-    class="col-start-1 col-span-3 lg:col-start-1 lg:col-span-12 text-center lg:text-left lg:ml-0 text-vivino text-xl -ml-4"
-  >
-    Scraping Vivino with puppeteer
-  </h1>
   <div class="col-start-1 col-span-3 lg:col-start-1 lg:col-span-6">
-    <label for="searchTerm" class="block text-md font-medium text-gray-400">Search for a wine</label>
+    <label for="searchTerm" class="block text-lg font-medium text-gray-400 mb-4">Search for a wine</label>
     <div class="relative mt-1 rounded-md shadow-sm">
       <input
         type="text"
